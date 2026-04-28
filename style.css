@@ -1,0 +1,233 @@
+:root {
+  --neon-pink: #ff0055;
+  --neon-blue: #00f3ff;
+  --dark-bg: #050507;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--dark-bg);
+  background-image:
+    linear-gradient(rgba(0, 243, 255, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.1) 2px, transparent 2px);
+  background-size: 40px 40px;
+  font-family: "Rajdhani", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.cyber-container {
+  width: 800px;
+  max-width: 100%;
+  padding: 40px;
+  border: 3px solid var(--neon-blue);
+  background: rgba(10, 10, 12, 0.98);
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+  clip-path: polygon(0 0, 95% 0, 100% 5%, 100% 100%, 5% 100%, 0 95%);
+}
+
+/* ————————————————————————————————————————————————————————————
+   HIỆU ỨNG GLITCH (CHỮ ĐỎ ĐỎ XANH XANH)
+   ———————————————————————————————————————————————————————————— */
+h1.glitch {
+  position: relative;
+  font-family: "Orbitron", sans-serif;
+  color: white;
+  font-size: clamp(1.5rem, 8vw, 3.5rem);
+  letter-spacing: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+h1.glitch::before,
+h1.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--dark-bg);
+}
+
+/* Lớp bóng đỏ */
+h1.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--neon-pink);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+/* Lớp bóng xanh */
+h1.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--neon-blue);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(31px, 9999px, 94px, 0);
+  }
+  20% {
+    clip: rect(62px, 9999px, 42px, 0);
+  }
+  40% {
+    clip: rect(16px, 9999px, 78px, 0);
+  }
+  60% {
+    clip: rect(87px, 9999px, 12px, 0);
+  }
+  80% {
+    clip: rect(53px, 9999px, 81px, 0);
+  }
+  100% {
+    clip: rect(24px, 9999px, 5px, 0);
+  }
+}
+
+@keyframes glitch-anim2 {
+  0% {
+    clip: rect(67px, 9999px, 34px, 0);
+  }
+  20% {
+    clip: rect(12px, 9999px, 82px, 0);
+  }
+  40% {
+    clip: rect(56px, 9999px, 16px, 0);
+  }
+  60% {
+    clip: rect(21px, 9999px, 73px, 0);
+  }
+  80% {
+    clip: rect(89px, 9999px, 54px, 0);
+  }
+  100% {
+    clip: rect(45px, 9999px, 90px, 0);
+  }
+}
+
+.status-bar {
+  font-size: 12px;
+  color: var(--neon-pink);
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--neon-pink);
+  padding-bottom: 5px;
+  text-shadow: 0 0 5px var(--neon-pink);
+}
+
+/* (Các phần Input và List bên dưới giữ nguyên bản trước của bạn) */
+.input-wrapper {
+  display: flex;
+  margin-bottom: 30px;
+  border: 2px solid var(--neon-blue);
+}
+input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 15px;
+  color: var(--neon-blue);
+  outline: none;
+  font-size: 1.2rem;
+  min-width: 0;
+}
+button#addTask {
+  background: var(--neon-blue);
+  border: none;
+  padding: 0 25px;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+  white-space: nowrap;
+}
+
+li {
+  list-style: none;
+  border-right: 6px solid var(--neon-pink);
+  background: rgba(255, 255, 255, 0.03);
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+li.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.5;
+  color: #888;
+}
+.task-text {
+  flex: 1;
+  font-size: 1.3rem;
+  color: #fff;
+  word-break: break-all;
+}
+.btns {
+  display: flex;
+  gap: 10px;
+}
+
+.done,
+.delete {
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  background: transparent;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.done {
+  color: var(--neon-blue) !important;
+  border: 1px solid var(--neon-blue);
+}
+.done:hover {
+  background: var(--neon-blue);
+  color: #000 !important;
+}
+.delete {
+  color: var(--neon-pink) !important;
+  border: 1px solid var(--neon-pink);
+}
+.delete:hover {
+  background: var(--neon-pink);
+  color: #000 !important;
+}
+
+@media (max-width: 600px) {
+  .input-wrapper {
+    flex-direction: column;
+    border: none;
+    gap: 10px;
+  }
+  input {
+    border: 2px solid var(--neon-blue);
+    width: 100%;
+  }
+  button#addTask {
+    padding: 15px;
+    width: 100%;
+  }
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btns {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
